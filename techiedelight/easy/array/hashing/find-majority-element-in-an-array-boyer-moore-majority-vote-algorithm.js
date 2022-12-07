@@ -39,3 +39,19 @@ const findMajority2 = (arr, n = arr.length, map = new Map()) => {
 }
 
 console.log(findMajority2(array)); // 2 
+
+// Solution 3 Boyer–Moore majority vote algorithm
+const findMajorityBM = (arr, n = arr.length) => {
+    let counter = 0;
+    let majority = arr[0];
+    for (let i = 1; n && i < n; i++) {
+        if (counter == 0) {
+            majority = arr[i];
+            counter = 1;
+        } else {
+            counter--;
+        }
+    }
+    return majority;
+}
+console.log(findMajorityBM(array)); // 2 
