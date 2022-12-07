@@ -30,3 +30,12 @@ const findMajority = (arr, n = arr.length) => {
 console.log(findMajority(array)); // 2 
 
 
+// Solution 2 Linear-time Solution
+
+const findMajority2 = (arr, n = arr.length, map = new Map()) => {
+    arr.forEach(element => map.set(element, map.get(element) + 1 || 1))
+    for (let [key, value] of map) { if (value > n / 2) return key; }
+    return -1;
+}
+
+console.log(findMajority2(array)); // 2 
