@@ -69,3 +69,17 @@ const pairWithGivenSum2 = (nums, target) => {
 
 pairWithGivenSum2([8, 7, 2, 5, 3, 1], 8); // Pair found (1, 7);
 
+
+// Solution 2 Using Hashing
+
+const pairWithGivenSum3 = (nums, target, map = new Map()) => {
+    for (let i = 0; i < nums.length; i++) {
+        if (map.has(target - nums[i])) {
+            console.log(`Pair found (${nums[map.get(target - nums[i])]}, ${nums[i]})`);
+            return;
+        }
+        map.set(nums[i], i);
+    }
+}
+
+pairWithGivenSum3([8, 7, 2, 5, 3, 1], 12); // Pair found (7, 5);
