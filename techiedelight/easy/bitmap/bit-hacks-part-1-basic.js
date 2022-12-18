@@ -31,3 +31,17 @@ checkOppositeSigns(3, -4);
 console.log("~~~~~~~~~~~~~~~")
 checkOppositeSigns(6, 14);
 console.log("~~~~~~~~~~~~~~~")
+
+const swapWithXOR = (obj) => {
+    if (obj.x != obj.y) {
+        obj.x = obj.x ^ obj.y;
+        obj.y = obj.x ^ obj.y;
+        obj.x = obj.x ^ obj.y;
+    }
+}
+
+let obj = { x: 4, y: 6 };
+swapWithXOR(obj);
+console.log(obj) // after swap {x: 6, y: 4}
+
+console.log("~~~~~~~~~~~~~~~")
