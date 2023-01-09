@@ -46,3 +46,13 @@ var searchRange = function (nums, target) {
 
 console.log(searchRange([5, 7, 7, 8, 8, 10], 8)) // [3, 4]
 
+// Solution 2 
+
+const searchRange2 = function (nums, target) {
+    return [
+        nums.findIndex(ele => ele === target),
+        nums.lastIndexOf(target)
+    ]
+};
+
+console.log(searchRange2([5, 7, 7, 8, 8, 10], 6)) // [-1, -1]
