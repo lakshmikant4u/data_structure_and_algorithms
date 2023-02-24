@@ -27,7 +27,7 @@ Constraints:
 
  */
 
-// Solution 1
+// Solution 1 using map
 /**
  * 
  * @param {*} nums 
@@ -46,3 +46,18 @@ const firstMissingPositive = (nums, map = new Map()) => {
 };
 
 console.log(firstMissingPositive([1, 2, 0])) // 3
+
+// Solution 2 Using Array sort method
+
+const firstMissingPositive2 = (nums) => {
+    nums.sort((a, b) => a - b)
+    let smallestNo = 1;
+    nums.map((num) => {
+        if (num === smallestNo) {
+            smallestNo++;
+        }
+        else return smallestNo
+    })
+    return (smallestNo)
+};
+console.log(firstMissingPositive2([1, 2, 0, 3, 5])) // 4
