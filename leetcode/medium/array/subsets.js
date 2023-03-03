@@ -45,3 +45,18 @@ console.log(subsets([1, 2, 3])); //
 //     [1, 3], [2],
 //     [2, 3], [3]
 // ]
+
+// Solution 2
+
+const subsets2 = n => {
+    const subsets = [[]];
+    for (n of n) {
+        subsets.map((c) => {
+            subsets.push([...c, n])
+        })
+    }
+    return subsets;
+};
+
+
+console.log(subsets2([0])); // [ [], [ 0 ] ]
