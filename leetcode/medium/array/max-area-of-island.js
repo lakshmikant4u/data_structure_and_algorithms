@@ -50,3 +50,44 @@ const dfs = (grid, r, c) => {
     return area
 }
 
+// Solution 2
+
+const maxAreaOfIsland = (grid) => {
+    const rows = grid.length
+    const cols = grid[0].length
+
+    const isValid = (i, j) => 0 <= i && i < rows && 0 <= j && j < cols && grid[i][j] === 1
+
+    const calcIslandSize = (i, j) => {
+        let cur = 0
+
+        const dfs = (i, j) => {
+            cur++
+            grid[i][j] = 2 // mark as seen
+            const moves = [[-1, 0], [1, 0], [0, 1], [0, -1]]
+
+            moves.forEach(m => { //O(4)
+                const x = i + m[0]
+                const y = j + m[1]
+
+                if (isValid(x, y)) dfs(x, y)
+            })
+        }
+
+        dfs(i, j)
+
+        return cur
+    }
+
+    let size = 0
+    for (let i = 0; i < rows; i++) { //O(n)
+        for (let j = 0; j < cols; j++) { //O(m)
+            if (grid[i][j] === 1) { //not visited island
+                size = Math.max(calcIslandSize(i, j), size)
+            }
+        }
+    }
+
+    return size
+};
+
