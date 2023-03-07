@@ -35,3 +35,33 @@ const singleNonDuplicate1 = nums => {
 
 console.log(singleNonDuplicate1([1, 1, 2, 3, 3, 4, 4, 8, 8])); // 2
 
+// Solution 2
+const singleNonDuplicate2 = (nums, head = 0, tail = nums.length - 1) => {
+
+    while (head < tail) {
+        let mid = Math.floor((head + tail) / 2);
+        let isEven = (head - mid) % 2 === 0;
+
+        if (nums[mid - 1] !== nums[mid] && nums[mid] !== nums[mid + 1]) {
+            return nums[mid];
+        }
+
+        if (nums[mid - 1] === nums[mid]) {
+            if (isEven) {
+                tail = mid - 2;
+            } else {
+                head = mid + 1;
+            }
+        } else {
+            if (isEven) {
+                head = mid + 2;
+            } else {
+                tail = mid - 1;
+            }
+        }
+    }
+
+    return nums[head];
+};
+
+console.log(singleNonDuplicate2([3, 3, 7, 7, 10, 11, 11])); // 10
