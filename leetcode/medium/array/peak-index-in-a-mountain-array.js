@@ -45,3 +45,12 @@ const peakIndexInMountainArray1 = (arr, low = 0, high = arr.length - 1) => {
 };
 console.log(peakIndexInMountainArray1([0, 1, 0])); // 1
 
+// Solution 2 : Linear Scan
+const peakIndexInMountainArray2 = (arr, pos = 0) => {
+    while (arr[pos] < arr[pos + 1]) {
+        pos++;
+    }
+    return pos;
+};
+console.log(peakIndexInMountainArray2([0, 2, 3, 4, 1, 0])); // 3
+
