@@ -71,3 +71,7 @@ const peakIndexInMountainArray3 = (arr, low = 0, high = arr.length - 1) => {
         return peakIndexInMountainArray(arr, mid, high)
 }
 console.log(peakIndexInMountainArray3([0, 10, 15, 5, 2])); // 2
+
+// Solution 4
+const peakIndexInMountainArray4 = (arr) => arr.indexOf(Math.max(...arr));
+console.log(peakIndexInMountainArray4([0, 10, 15, 5, 2])); // 2
