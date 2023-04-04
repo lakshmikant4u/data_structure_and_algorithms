@@ -46,3 +46,53 @@ const findCircleNum = (isConnected) => {
 };
 
 console.log(findCircleNum([[1, 1, 0], [1, 1, 0], [0, 0, 1]])) // 2
+
+// Solution 2 : Union Find
+var findCircleNum2 = function (isConnected) {
+    const n = isConnected.length;
+
+    const uf = {};
+    const sizes = {};
+
+    for (let i = 0; i < n; i++) {
+        uf[i] = i;
+        sizes[i] = 1;
+    }
+
+    function find(x) {
+        if (uf[x] != x) uf[x] = find(uf[x]);
+        return uf[x];
+    }
+
+    function union(x, y) {
+        const rootX = find(x);
+        const rootY = find(y);
+
+        if (rootX === rootY) return false;
+
+        if (sizes[rootX] > sizes[rootY]) {
+            uf[rootY] = rootX;
+            sizes[rootX] += sizes[rootY];
+        }
+        else {
+            uf[rootX] = rootY;
+            sizes[rootY] += sizes[rootX];
+        }
+
+        return true;
+    }
+
+    let count = n;
+
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++) {
+            if (i === j) continue;
+
+            if (isConnected[i][j] === 1 && union(i, j)) count--;
+        }
+    }
+
+    return count;
+};
+console.log(findCircleNum2([[1, 0, 0], [0, 1, 0], [0, 0, 1]])) // 3
+
