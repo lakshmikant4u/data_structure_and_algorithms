@@ -47,7 +47,7 @@ const firstMissingPositive = (nums, map = new Map()) => {
 
 console.log(firstMissingPositive([1, 2, 0])) // 3
 
-// Solution 2 Using Array sort method
+// Solution 2 Using Array sort method 
 
 const firstMissingPositive2 = (nums) => {
     nums.sort((a, b) => a - b)
